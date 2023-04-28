@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use Inertia\Inertia;
 
 class ItemController extends Controller
 {
@@ -15,7 +16,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+
+        return Inertia::render('Items/Index',[
+            'items' => Item::select('id','name','author','maker','isbn','number_stock','is_stocking')->get()
+        ]);
     }
 
     /**
@@ -25,7 +29,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Items/Create');
     }
 
     /**
@@ -36,7 +40,20 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        //
+        Item::create([
+            'name' => $request->name,
+            'author' => $request->author,
+            'maker' => $request->maker,
+            'isbn' => $request->isbn,
+            'number_stock' => $request->number_stock,
+
+        ]);
+
+        return to_route('items.index')
+        ->with([
+            'message'=> '登録しました。',
+            'status' => 'success',
+        ]);
     }
 
     /**
@@ -47,7 +64,10 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        // dd($item);
+        return Inertia::render('Items/Show',[
+            'item'=>$item
+        ]);
     }
 
     /**
@@ -58,7 +78,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return Inertia::render('Items/Edit',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -70,7 +92,21 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        // dd($item->name,$request->name);
+        $item->name = $request->name;
+        $item->author = $request->author;
+        $item->maker = $request->maker;
+        $item->isbn = $request->isbn;
+        $item->number_stock = $request->number_stock;
+        $item->is_stocking = $request->is_stocking;
+        $item->save();
+
+        return to_route('items.index')
+        ->with([
+            'message'=>'更新しました',
+            'status' => 'success',
+        ]);
+
     }
 
     /**
@@ -81,6 +117,12 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return to_route('items.index')
+        ->with([
+            'message'=>'削除しました',
+            'status' => 'danger',
+        ]);
     }
 }
