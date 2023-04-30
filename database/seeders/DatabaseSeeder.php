@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use  \App\Models\Order;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
          \App\Models\Customer::factory(1000)->create();
+
+         $items = \App\Models\Item::all();
+
+         Order::factory(100)->create()
+         ->each(function(Order $order) use ($items){
+            $order->items()->attach(
+                $items->random(rand(1,3))->pluck('id')->toArray(), 
+                [ 'quantity' => rand(1, 5) ]
+            );
+         });
 
         // \App\Models\User::factory(10)->create();
 
