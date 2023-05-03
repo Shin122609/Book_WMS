@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
          $items = \App\Models\Item::all();
 
-         Order::factory(100)->create()
+         Order::factory(10000)->create()
          ->each(function(Order $order) use ($items){
             $order->items()->attach(
                 $items->random(rand(1,3))->pluck('id')->toArray(), 

@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Customer; 
 use App\Models\Item;
 use Illuminate\Support\Facades\DB;
+use App\Models\Log;
 
 class OrderController extends Controller
 {
@@ -19,7 +20,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Log::paginate(50));
+
+        $logs = Log::groupBy('id')
+        ->selectRaw('id, sum(subtotal) as total,
+        customer_name,status,created_at')
+        ->paginate(50);
+
+        // dd($orders);
+
+        return Inertia::render('Orders/Index',[
+            'logs' => $logs
+        ]);
     }
 
     /**
@@ -85,7 +97,21 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        //小計
+        $items = Log::where('id', $order->id)->get();
+
+        //合計
+        $log = Log::groupBy('id')
+        ->where('id', $order->id)
+        ->selectRaw('id, sum(subtotal) as total,
+        customer_name,status,created_at')
+        ->get();
+
+        // dd($items, $log);
+        return Inertia::render('Orders/Show',[
+            'items' => $items,
+            'log' => $log,
+        ]);
     }
 
     /**
@@ -96,7 +122,45 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $order = Order::find($order->id);
+
+        $allItems = Item::select('id','name','author','number_stock','is_stocking')->get();
+
+        $items = [];
+
+        foreach($allItems as $allItem) {
+            $quantity = 0;
+            foreach($order->items as $item){
+                if($allItem->id === $item->id){
+                    $quantity = $item->pivot->quantity;
+                }
+            }
+
+            array_push($items,[
+                'id' => $allItem->id,
+                'name' => $allItem->name,
+                'author' => $allItem->author,
+                'is_stocking' => $allItem->is_stocking,
+                'number_stock' => $allItem->number_stock,
+                'quantity' => $quantity,
+
+            ]);
+        }
+
+        // dd($items);
+
+        $log = Log::groupBy('id')
+        ->where('id', $order->id)
+        ->selectRaw('id, customer_id,
+        customer_name, status, created_at')
+        ->get();
+
+        return Inertia::render('Orders/Edit', [
+            'items' => $items,
+            'log' => $log, 
+        ]);
+
+
     }
 
     /**
@@ -108,8 +172,34 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        DB::beginTransaction();
+
+        try{
+        // dd($request, $purchase);
+        $order->status = $request->status;
+        $order->save();
+
+        $items = [];
+
+        foreach($request->items as $item){
+            $items = $items + [
+                $item['id'] => [
+                    'quantity' => $item['quantity']
+                ]
+            ];
+        }
+
+        // dd($items);
+        $order->items()->sync($items);
+
+        DB::commit();
+        return to_route('dashboard');
+    } catch(\Exception $e){
+        DB::rollback();
     }
+
+    }
+
 
     /**
      * Remove the specified resource from storage.
