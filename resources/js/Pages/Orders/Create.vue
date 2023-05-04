@@ -89,7 +89,9 @@ const setCustomerId = id =>{
                                 </div>
                                 <div class="p-2 w-full">
                                 <div class="relative">
-                                    <label for="customer" class="leading-7 text-sm text-gray-600">顧客名</label>
+                                    <label for="customer" class="leading-7 text-sm text-gray-600">カナ名  </label>
+                                    <label  class="leading-7 text-sm text-red-600"> 　　　　　　　　　　　　　　　　　　　　*名前と苗字の間に空白を入れてください </label>
+
                                     <MicroModal  @update:customerId="setCustomerId"/>
 
                                 </div>

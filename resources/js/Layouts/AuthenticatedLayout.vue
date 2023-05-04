@@ -30,20 +30,21 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
-                                <NavLink :href="route('orders.create')" :active="route().current('orders.create')">
-                                    注文画面
+                                    HOME
                                 </NavLink>
                                 <NavLink :href="route('orders.index')" :active="route().current('orders.index')">
-                                    注文履歴
+                                    注文履歴 (管理側) 
                                 </NavLink>
                                 <NavLink :href="route('items.index')" :active="route().current('items.index')">
-                                    商品管理
+                                    商品管理 (管理側)
                                 </NavLink>
                                 <NavLink :href="route('customers.index')" :active="route().current('customers.index')">
-                                    顧客管理
+                                    顧客管理 (管理側)
                                 </NavLink>
+                                <NavLink :href="route('orders.create')" :active="route().current('orders.create')">
+                                    注文画面 (顧客側)
+                                </NavLink>
+
 
                             </div>
                         </div>
@@ -126,21 +127,22 @@ const showingNavigationDropdown = ref(false);
                 >
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('orders.create')" :active="route().current('orders.create')">
-                            注文画面
+                            HOME
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('orders.index')" :active="route().current('orders.index')">
-                            注文履歴
+                            注文履歴 (管理側)
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink :href="route('items.index')" :active="route().current('items.index')">
-                            商品管理
+                            商品管理 (管理側)
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('customers.index')" :active="route().current('customers.index')">
-                            顧客管理
+                            顧客管理 (管理側)
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('orders.create')" :active="route().current('orders.create')">
+                            注文画面 (顧客側)
+                        </ResponsiveNavLink>
+
 
 
                     </div>

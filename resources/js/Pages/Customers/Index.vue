@@ -53,10 +53,10 @@ const searchCustomers = () => {
                     </thead>
                     <tbody>
                     <tr v-for="customer in customers.data" :key="customer.id">
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ customer.id  }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ customer.name }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ customer.kana }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ customer.tel }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.id  }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.name }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.kana }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.tel }}</td>
                     </tr>
                     </tbody>
                 </table>

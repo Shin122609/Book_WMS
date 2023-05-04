@@ -126,8 +126,8 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                                 <div class="p-2 w-full">
                                 <div class="relative">
                                     <label for="status" class="leading-7 text-sm text-gray-600">ステータス</label>
-                                    <input disabled type="radio" id="status" v-model="form.status" name="status" value="1" >未キャンセル
-                                    <input disabled type="radio" id="status" v-model="form.status" name="status" value="0" >キャンセルする
+                                    <input  type="radio" id="status" v-model="form.status" name="status" value="1" >注文済み
+                                    <input  type="radio" id="status" v-model="form.status" name="status" value="0" >キャンセルする
                                 </div>
                                 </div>
 

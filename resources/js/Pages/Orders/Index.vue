@@ -53,15 +53,18 @@ onMounted(() => {
                     </thead>
                     <tbody>
                     <tr v-for="log in props.logs.data" :key="log.id">
-                        <td class="border-b-2 border-green-200 px-4 py-3">
+                        <td class="border-b-2 border-gray-200 px-4 py-3">
                         <Link class="text-blue-400" :href="route('orders.show',{order: log.id})">
                             {{ log.id  }}
                         </Link>
                         </td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ log.customer_name }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ log.total }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ log.status }}</td>
-                        <td class="border-b-2 border-green-200 px-4 py-3">{{ dayjs(log.created_at).format('YYYY-MM-DD HH:mm:ss') }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ log.customer_name }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ log.total }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">
+                            <span v-if="log.status === 1">注文済み</span>
+                            <span class="text-red-400" v-if="log.status === 0">キャンセル</span>
+                        </td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ dayjs(log.created_at).format('YYYY-MM-DD HH:mm:ss') }}</td>
 
                     </tr>
                     </tbody>
