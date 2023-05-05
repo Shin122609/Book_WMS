@@ -31,8 +31,7 @@ class StoreCustomerRequest extends FormRequest
             'postcode' => ['required', 'max:7'], 
             'address' => ['required', 'max:100'], 
             'birthday' => ['date'], 
-            'gender' => ['required'], 
-            'memo' => ['max:1000'],
+            'gender' => ['required','boolean'], 
         ];
     }
 }

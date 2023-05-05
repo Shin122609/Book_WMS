@@ -35,8 +35,8 @@ onMounted(() => {
                 <FlashMessage />
                 <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
                     <div>
-                        <input type="text" name="search" v-model="search"> 
-                        <button class="bg-blue-300 text-white py-2 px-2" @click="searchCustomers">検索</button>
+                        <input type="text" name="search" placeholder="カナ文字で氏名を入力" v-model="search"> 
+                        <button class="bg-blue-300 text-white py-2 px-2"  @click="searchCustomers">検索</button>
                     </div>
                 </div>
                 <div class="lg:w-2/3 w-full mx-auto overflow-auto">

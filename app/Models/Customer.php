@@ -13,7 +13,7 @@ class Customer extends Model
     protected $fillable = 
     ['name','kana','tel','email',
     'postcode','address', 'birthday',
-    'gender', 'memo'];
+    'gender'];
 
 
     public function scopeSearchCustomers($query, $input = null) 

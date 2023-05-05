@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head,Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">書籍在庫管理システム</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">書籍在庫&顧客管理システム</h2>
         </template>
 
         <div class="py-12">
@@ -18,49 +18,43 @@ import { Head } from '@inertiajs/inertia-vue3';
                         <section class="text-gray-600 body-font">
                         <div class="container px-5 py-24 mx-auto">
                             <div class="flex flex-col text-center w-full mb-20">
-                            <h2 class="text-xs text-green-500 tracking-widest font-medium title-font mb-1">ROOF PARTY POLAROID</h2>
-                            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Master Cleanse Reliac Heirloom</h1>
-                            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">書籍在庫&顧客管理システム</h1>
+                            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">これは書籍の販売をインターネット上で行っている店舗様に向けたシステムです</p>
                             </div>
                             <div class="flex flex-wrap">
                             <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Shooting Stars</h2>
-                                <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-                                <a class="text-green-500 inline-flex items-center">Learn More
+                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">注文履歴 (管理側)</h2>
+                                <p class="leading-relaxed text-base mb-4 ">こちらでは顧客名、購入冊数や購入日などを確認することができます。また購入をキャンセルした顧客をデータベースから削除することも出来ます。</p>
+                                <Link class="text-blue-400" :href="route('orders.index')">例を見る ->
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
-                                </a>
+                                </Link>
                             </div>
                             <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">The Catalyzer</h2>
-                                <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-                                <a class="text-green-500 inline-flex items-center">Learn More
+                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">商品管理 (管理側)</h2>
+                                <p class="leading-relaxed text-base mb-8 ">こちらでは書籍の在庫状況を確認することができ、作品名やISBN、在庫状況で検索できる機能を備えています。</p>
+                                <Link class="text-blue-400" :href="route('items.index')">例を見る ->
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
-                                </a>
+                                </Link>
                             </div>
                             <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Neptune</h2>
-                                <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-                                <a class="text-green-500 inline-flex items-center">Learn More
+                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">顧客管理 (管理側)</h2>
+                                <p class="leading-relaxed text-base mb-4 ">こちらでは顧客の情報を確認することができ、氏名のカナ文字で検索できる機能を備えています。</p>
+                                <Link class="text-blue-400 " :href="route('customers.index')">例を見る ->
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
-                                </a>
+                                </Link>
                             </div>
                             <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Melanchole</h2>
-                                <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-                                <a class="text-green-500 inline-flex items-center">Learn More
+                                <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">注文画面 (顧客側)</h2>
+                                <p class="leading-relaxed text-base mb-4 ">こちらは顧客の方が使用できる画面になっており、自身の氏名を検索し購入したい書籍を選ぶことができます。</p>
+                                <Link class="text-blue-400" :href="route('orders.create')">例を見る ->
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
-                                </a>
+                                </Link>
                             </div>
                             </div>
-                            <button class="flex mx-auto mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Button</button>
                         </div>
                         </section>
                     </div>

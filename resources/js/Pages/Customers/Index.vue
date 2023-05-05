@@ -36,7 +36,7 @@ const searchCustomers = () => {
                 <FlashMessage />
                 <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
                     <div>
-                        <input type="text" name="search" v-model="search"> 
+                        <input type="text" name="search" placeholder="カナ or 電話番号を入力" v-model="search"> 
                         <button class="bg-blue-300 text-white py-2 px-2" @click="searchCustomers">検索</button>
                     </div>
                     <Link as="button" :href="route('customers.create')" class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">顧客登録</Link>
@@ -53,7 +53,9 @@ const searchCustomers = () => {
                     </thead>
                     <tbody>
                     <tr v-for="customer in customers.data" :key="customer.id">
-                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.id  }}</td>
+                        <td class="border-b-2 border-gray-200 px-4 py-3">
+                            <Link class="text-blue-400" :href="route('customers.show',{customer : customer.id})">{{ customer.id  }}</Link>
+                        </td>
                         <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.name }}</td>
                         <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.kana }}</td>
                         <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.tel }}</td>

@@ -28,7 +28,6 @@ class CustomerFactory extends Factory
             'address' => $address, 
             'birthday' => $this->faker->dateTime, 
             'gender' => $this->faker->numberBetween(0, 2), 
-            'memo' => $this->faker->realText(50), 
             ];
     }
 }
